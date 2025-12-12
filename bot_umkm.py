@@ -3,7 +3,8 @@ import google.generativeai as genai
 from PIL import Image # Library pengolah gambar
 
 # --- 1. KONFIGURASI API ---
-GOOGLE_API_KEY = "GOOGLE_API_KEY" # <--- JANGAN LUPA ISI INI!
+# Mengambil kunci dari Brankas Streamlit
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # --- 2. CONFIG HALAMAN ---
@@ -90,4 +91,5 @@ if prompt := st.chat_input("Analisa gambar ini atau tanya sesuatu..."):
             st.session_state.messages.append({"role": "assistant", "content": full_response})
             
         except Exception as e:
+
             st.error(f"Error Vision: {e}")
